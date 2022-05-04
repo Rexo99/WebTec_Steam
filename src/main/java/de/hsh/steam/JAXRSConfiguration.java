@@ -6,7 +6,7 @@ import jakarta.ws.rs.core.Application;
 /**
  * Configures JAX-RS for the application.
  */
-@ApplicationPath("api")
+@ApplicationPath("/api")
 public class JAXRSConfiguration extends Application {
     
 }
