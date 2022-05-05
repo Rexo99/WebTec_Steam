@@ -50,7 +50,7 @@ public class User implements Serializable{
 			if ( r.getRatedSeries().equals(series) ) {
 				r.setScore(score);
 				r.setRemark(remark);
-                                return;
+				return;
 			}
 		}
 		Rating r = new Rating(score, remark, this, series);

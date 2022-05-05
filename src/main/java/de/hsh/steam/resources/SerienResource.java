@@ -27,6 +27,14 @@ public class SerienResource {
     }
 
 
+    @GET
+    @Path("/test3")
+    public Response getAllSeries(){
+        return Response.ok().entity(new Series("title", 4, Genre.Action, Streamingprovider.AmazonPrime)).build();
+        // return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeries()).build();
+    }
+
+
     /**
      * show the home site of on user after log in
      * @param username
@@ -59,9 +67,14 @@ public class SerienResource {
     }
 
 
+    /**
+     * get Information of one spezific serie identified by serienname
+     * @param serienname
+     * @return infos of one serie
+     */
     @GET
     @Path("/{Username}/create_Series")
-    public Response getSerie(@PathParam("Username")String username, String serienname){
+    public Response getSerie(String serienname){
         return Response.ok().entity(SerializedSeriesRepository.getInstance().getSeriesObjectFromName(serienname)).build();
     }
 }
