@@ -1,0 +1,11 @@
+ 3.4. Entwurf einer REST-Schnittstelle
+ Ressourcen:
+ - Serien
+    - Rating
+    - Platform
+    - Genre
+    - Anzahl Staffeln
+    - Titel
+    - Bemerkung
+
+

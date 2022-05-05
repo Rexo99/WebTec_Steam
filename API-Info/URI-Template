@@ -1,0 +1,33 @@
+Anwendung zum streamen von Serien
+
+HTTP: GET
+REST: READ
+/API/ Rootverzecihnis
+
+HTTP: GET
+REST: READ
+/API/Login/ Login-Fenster für die Anmeldung
+
+HTTP: POST
+REST: CREATE
+/API/{User-ID}/home Homescreen für grobe Übersicht der Anwendung
+
+HTTP: PUT
+REST: CREATE
+/API/{User-ID}/creat_Series Formular für das hinzufügen von Serien
+
+HTTP: GET
+REST: READ
+/API/{User-ID}/{series} Zeigt alle Infos zu der ausgewählten Serie an
+
+HTTP: PUT
+REST: CREATE
+/API/{User-ID}/{series}/rating Rating für ausgewählte Serie angeben
+
+HTTP: PUT
+REST: CREATE
+/API/{User-ID}/{series}/note Bemerkung für ausgewählte Serie angeben
+
+HTTP: POST
+REST: (CREATE) aber wahrscheinlich GET
+/API/{User-ID}/search/

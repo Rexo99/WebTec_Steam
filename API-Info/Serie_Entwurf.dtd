@@ -1,0 +1,7 @@
+<!ELEMENT Serie (Titel, Genre, Staffeln, Plattform, Rating, Bemerkung)>
+        <!ELEMENT Titel (#PCDATA)>
+        <!ELEMENT Genre (#PCDATA)>
+        <!ELEMENT Staffeln (#PCDATA)>
+        <!ELEMENT Plattform (#PCDATA)>
+        <!ELEMENT Rating (#PCDATA)>
+        <!ELEMENT Bemerkung (#PCDATA)>

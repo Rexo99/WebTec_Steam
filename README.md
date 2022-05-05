@@ -1,5 +1,6 @@
 # WebTec_Steam
 
-yo yo yo Erik. Wie geht?
-
-yo yo yo Marvin. Was geht?
+Marvin Pieper 0000001
+Jan Pierre Wesche 42
+Erik Hinkelmanns 1583861
+Luca Seliger 1583243
