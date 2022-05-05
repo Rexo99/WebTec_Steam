@@ -17,7 +17,6 @@ import de.hsh.steam.entities.User;
  */
 public class SerializedSeriesRepository extends SeriesRepository {
 
-	
 	private static SerializedSeriesRepository exemplar = null;
 
 	private static String filename = "allSeriesData.ser";

@@ -9,25 +9,29 @@ REST: READ
 /API/Login/ Login-Fenster für die Anmeldung
 
 HTTP: POST
+REST: READ
+/API/Login/ im body werden jetzt username und password mitgeschickt
+
+HTTP: POST
 REST: CREATE
-/API/{User-ID}/home Homescreen für grobe Übersicht der Anwendung
+/API/{Username}/home Homescreen für grobe Übersicht der Anwendung
 
 HTTP: PUT
 REST: CREATE
-/API/{User-ID}/creat_Series Formular für das hinzufügen von Serien
+/API/{Username}/creat_Series Formular für das hinzufügen von Serien
 
 HTTP: GET
 REST: READ
-/API/{User-ID}/{series} Zeigt alle Infos zu der ausgewählten Serie an
+/API/{Username}/{series} Zeigt alle Infos zu der ausgewählten Serie an
 
 HTTP: PUT
 REST: CREATE
-/API/{User-ID}/{series}/rating Rating für ausgewählte Serie angeben
+/API/{Username}/{series}/rating Rating für ausgewählte Serie angeben
 
 HTTP: PUT
 REST: CREATE
-/API/{User-ID}/{series}/note Bemerkung für ausgewählte Serie angeben
+/API/{Username}/{series}/note Bemerkung für ausgewählte Serie angeben
 
 HTTP: POST
 REST: (CREATE) aber wahrscheinlich GET
-/API/{User-ID}/search/
+/API/{Username}/search/
