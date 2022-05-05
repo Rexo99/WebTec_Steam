@@ -30,7 +30,7 @@ public abstract class SeriesRepository  {
 
 	
 	/** 
-	 * @param u
+	 * @param
 	 */
 	// werden in Unterklasse Serializer implementiert
 	abstract protected void saveData();

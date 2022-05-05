@@ -1,0 +1,31 @@
+JSON:
+Serien Format:
+{
+  "Serie": {
+    "Titel": "Titel der Serie",
+    "Genre": "Genre der Serie",
+    "Staffeln": "Anzahl der Staffeln",
+    "Platform": "Platform auf der die Serie zu finden ist",
+    "Rating": "Rating der Serie",
+    "Bemerkung": "Bemerkung zur Serie"
+  }
+}
+
+Serien Anfrage allgemein (POST):
+suchbegriff //Body in Post-Anfrage (es wird keine Json mitgeschickt)
+
+Serien Anfrage speziell:
+Serien json mit Attributen ausgefüllt (es wird Json mitgeschickt)
+
+Serien Antwort:
+Liste von Serien Daten
+
+XML:
+Serien Anfrage allgemein (POST):
+suchbegriff //Body in Post-Anfrage (es wird keine xml mitgeschickt)
+
+Serien Anfrage speziell:
+Serien xml mit Attributen ausgefüllt (es wird xml mitgeschickt)
+
+Serien Antwort:
+Liste von Serien Daten

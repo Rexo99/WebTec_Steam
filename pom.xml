@@ -85,12 +85,12 @@
                     <containerId>glassfish6x</containerId>
                     <type>installed</type>
                     <!-- Path to directory where glassfish is installed -->
-                    <home>${basedir}/../glassfish6</home>
+                    <home>${basedir}/glassfish6</home>
                 </container>
                 <configuration>
                     <type>existing</type>
                     <!-- Path to domains directory -->
-                    <home>${basedir}/../glassfish6/glassfish/domains</home>
+                    <home>${basedir}/glassfish6/glassfish/domains</home>
                     <properties>
                         <!-- Domain name where application will be deployed. -->
                         <cargo.glassfish.domain.name>domain1</cargo.glassfish.domain.name>
