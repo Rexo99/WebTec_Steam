@@ -22,7 +22,7 @@ public class SerienResource {
     // This is just a Test application
     @GET
     @Path("/test2")
-    public Response get(){
+    public Response getTestSerie(){
         return Response.ok().entity(new Series("title", 3, Genre.Action, Streamingprovider.AmazonPrime)).build();
     }
 
@@ -48,7 +48,7 @@ public class SerienResource {
      * @return the new serie
      */
     @POST
-    @Path("/test/create_Series")
+    @Path("/{Username}/create_Series")
     public void addSerie(@PathParam("Username")String username, String title, int numOfSeasons, Genre genre, Streamingprovider sp){
         try{
             Series serie = new Series(title, numOfSeasons, genre, sp);
@@ -57,6 +57,7 @@ public class SerienResource {
             System.out.println(e.getMessage());
         }
     }
+
 
     @GET
     @Path("/{Username}/create_Series")
