@@ -97,11 +97,11 @@ public abstract class SeriesRepository  {
 	 * @param username
 	 * @return ArrayList<Series>
 	 */
-	public ArrayList<SeriesData> getAllSeriesOfUser(String username) {
-		ArrayList<SeriesData> allSeriesOfUser = new ArrayList<SeriesData>();
+	public ArrayList<Series> getAllSeriesOfUser(String username) {
+		ArrayList<Series> allSeriesOfUser = new ArrayList<Series>();
 		for (Series s : allSeries) {
 			if (s.isSeenBy(username))
-				allSeriesOfUser.add(new SeriesData(s));
+				allSeriesOfUser.add(s);
 		}
 		return allSeriesOfUser;
 	}

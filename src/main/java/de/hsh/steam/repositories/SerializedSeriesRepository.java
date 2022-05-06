@@ -32,11 +32,11 @@ public class SerializedSeriesRepository extends SeriesRepository {
 		addOrModifySeries(s1);
 		addOrModifySeries(s2);
 
-		s1.putOnWatchListOfUser(u);
-		s2.putOnWatchListOfUser(u);
+		s1.putOnWatchListOfUser(u.getUsername());
+		s2.putOnWatchListOfUser(u.getUsername());
 
-		s1.putOnWatchListOfUser(l);
-		s2.putOnWatchListOfUser(l);
+		s1.putOnWatchListOfUser(l.getUsername());
+		s2.putOnWatchListOfUser(l.getUsername());
 
 	}
 

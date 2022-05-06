@@ -1,3 +1,10 @@
+/*
+Programm Ausführen:
+
+1. mvn package (compiled das Projekt neu)
+2. mvn cargo:redeploy (hier wissen wir nicht genau was es macht, der Befehl muss aber ausgeführt werden.)
+ */
+
 package de.hsh.steam.resources;
 
 import com.sun.imageio.plugins.common.SimpleRenderedImage;
@@ -11,6 +18,8 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.core.Response;
+
+import java.util.ArrayList;
 
 /**
  * Template für Response
@@ -42,7 +51,7 @@ public class SerienResource {
      * @return all Seires of the acutal user
      */
     @GET
-    @Path("/{Username}/home")
+    @Path("/{Username}")
     public Response getHome(@PathParam("Username")String username){
         return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(username)).build();
     }
@@ -50,38 +59,40 @@ public class SerienResource {
 
     /**
      * create a new serie
-     * @param title of the new serie
-     * @param numOfSeasons of the new serie
-     * @param genre of the new serie
-     * @param sp Streamingprovider of the new serie
      * @return the new serie
      */
     /*
     @POST
     @Path("/{Username}/create_Series")
-    public void addSerie(String title, int numOfSeasons, Genre genre, Streamingprovider sp){
+    public Response addSerie(@PathParam("Username")String username, String title, int numOfSeasons, Genre genre, Streamingprovider sp){
         try{
-            Series serie = new Series(title, numOfSeasons, genre, sp);
-            SerializedSeriesRepository.getInstance().addOrModifySeries(serie);
+            Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(new Series(title, numOfSeasons, genre, sp));
+            a.putOnWatchListOfUser(username);
+            return Response.ok().build();
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
         }
     }
+    */
 
-*/
+
+
     /**
      * get Information of one spezific serie identified by serienname
-     * @param serienname
      * @return infos of one serie
      */
-
-    /*
     @GET
-    @Path("/{Username}/create_Series")
-    public Response getSerie(String serienname){
-        return Response.ok().entity(SerializedSeriesRepository.getInstance().getSeriesObjectFromName(serienname)).build();
+    @Path("/{Username}/{Seriesname}")
+    public Response getSerie(@PathParam("Username")String username, @PathParam("Seriesname")String seriesname){
+        ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
+        if(s.isEmpty()) return Response.status(404).build();
+        for (int i = 0 ; i < s.size(); i++){
+            if(!s.get(i).isSeenBy(username)){
+                s.remove(i);
+                i--;
+            }
+        }
+        return Response.ok().entity(s).build();
     }
-
-    */
 
 }

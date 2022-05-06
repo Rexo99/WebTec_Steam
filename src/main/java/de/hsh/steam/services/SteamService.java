@@ -76,7 +76,7 @@ public class SteamService {
 		Series series = repository.addOrModifySeries(s);
 		User u = repository.getUserObject(username);
 		if (u != null) {
-			series.putOnWatchListOfUser(u);	
+			series.putOnWatchListOfUser(u.getUsername());
 			u.rate(series, score, remark);
 		}
 		LOG.info("Created Series " + series.getTitle() + " for user " + u.getUsername());
@@ -117,7 +117,7 @@ public class SteamService {
 	 * @param username
 	 * @return ArrayList<Series>
 	 */
-	public ArrayList<SeriesData> getAllSeriesOfUser(String username) {
+	public ArrayList<Series> getAllSeriesOfUser(String username) {
 		return repository.getAllSeriesOfUser(username);
 	}
 	

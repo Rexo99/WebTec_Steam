@@ -16,7 +16,7 @@ HTTP: POST
 REST: CREATE
 /API/{Username}/home Homescreen für grobe Übersicht der Anwendung
 
-HTTP: PUT
+HTTP: POST
 REST: CREATE
 /API/{Username}/creat_Series Formular für das hinzufügen von Serien
 

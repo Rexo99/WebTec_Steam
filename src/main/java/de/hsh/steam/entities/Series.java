@@ -14,7 +14,7 @@ public class Series implements Serializable{
 	private int numberOfSeasons;
 	private Genre genre;
 	private Streamingprovider streamedBy;
-	private ArrayList<User> seenBy = new ArrayList<User>();
+	private ArrayList<String> seenBy = new ArrayList<String>();
 
 	
 	/**
@@ -35,9 +35,9 @@ public class Series implements Serializable{
 	/** 
 	 * @param u
 	 */
-	public void putOnWatchListOfUser(User u) {
+	public void putOnWatchListOfUser(String u) {
 		if (!seenBy.contains(u)) {
-			this.seenBy.add(u);				
+			this.seenBy.add(u);
 		}
 	}
 	
@@ -47,8 +47,8 @@ public class Series implements Serializable{
 	 * @return Boolean
 	 */
 	public Boolean isSeenBy(String username) {
-		for (User u: seenBy) {
-			if (u.getUsername().equals(username) )
+		for (String u: seenBy) {
+			if (u.equals(username))
 				return true;
 		}
 		return false;
@@ -58,7 +58,7 @@ public class Series implements Serializable{
 	/** 
 	 * @return ArrayList<User>
 	 */
-	public ArrayList<User> getSeenBy() {
+	public ArrayList<String> getSeenBy() {
 		return seenBy;
 	}
 	
