@@ -19,6 +19,7 @@ import jakarta.ws.rs.core.Response;
 @Path("serien")
 public class SerienResource {
 
+
     // This is just a Test application
     @GET
     @Path("/test2")
