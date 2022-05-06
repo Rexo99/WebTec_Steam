@@ -17,7 +17,10 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriBuilder;
+import jakarta.ws.rs.core.UriInfo;
 
 import java.util.ArrayList;
 
@@ -61,10 +64,10 @@ public class SerienResource {
      * create a new serie
      * @return the new serie
      */
-    /*
+/*
     @POST
     @Path("/{Username}/create_Series")
-    public Response addSerie(@PathParam("Username")String username, String title, int numOfSeasons, Genre genre, Streamingprovider sp){
+    public Response addSerie(@PathParam("Username")String username, Genre genre, int numOfSeasons, Streamingprovider sp, String title){
         try{
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(new Series(title, numOfSeasons, genre, sp));
             a.putOnWatchListOfUser(username);
@@ -74,6 +77,31 @@ public class SerienResource {
         }
     }
     */
+
+
+
+
+    @GET
+    @Path("/{Username}/create_Series?genre={genre}&numOfSeasons={numOfS}&sp={sp}&title={title}")
+    public Response addSerie(@PathParam("Username")String username, @PathParam("genre")Genre genre, @PathParam("numOfS")int numS,@PathParam("sp")Streamingprovider spr, @PathParam("title")String title){
+        try{
+            //Serie wird erstellt.
+            Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(new Series(title,numS, genre,spr));
+
+            // Serie wird einem User zugeordnet.
+            a.putOnWatchListOfUser(username);
+
+            // keine ahnung was hier gemacht wird
+            /*
+            UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
+            uriBuilder.path(s.getTitle());
+            return Response.created(uriBuilder.build()).entity(a).build();
+             */
+            return Response.ok().build();
+        } catch (Exception e){
+            return Response.status(409).build();
+        }
+    }
 
 
 
