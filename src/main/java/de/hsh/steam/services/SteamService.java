@@ -3,12 +3,7 @@ package de.hsh.steam.services;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-import de.hsh.steam.entities.Genre;
-import de.hsh.steam.entities.Rating;
-import de.hsh.steam.entities.Score;
-import de.hsh.steam.entities.Series;
-import de.hsh.steam.entities.Streamingprovider;
-import de.hsh.steam.entities.User;
+import de.hsh.steam.entities.*;
 import de.hsh.steam.repositories.SerializedSeriesRepository;
 
 /**
@@ -122,7 +117,7 @@ public class SteamService {
 	 * @param username
 	 * @return ArrayList<Series>
 	 */
-	public ArrayList<Series> getAllSeriesOfUser(String username) {
+	public ArrayList<SeriesData> getAllSeriesOfUser(String username) {
 		return repository.getAllSeriesOfUser(username);
 	}
 	

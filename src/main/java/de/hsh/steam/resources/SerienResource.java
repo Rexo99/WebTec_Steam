@@ -55,9 +55,10 @@ public class SerienResource {
      * @param sp Streamingprovider of the new serie
      * @return the new serie
      */
+    /*
     @POST
     @Path("/{Username}/create_Series")
-    public void addSerie(@PathParam("Username")String username, String title, int numOfSeasons, Genre genre, Streamingprovider sp){
+    public void addSerie(String title, int numOfSeasons, Genre genre, Streamingprovider sp){
         try{
             Series serie = new Series(title, numOfSeasons, genre, sp);
             SerializedSeriesRepository.getInstance().addOrModifySeries(serie);
@@ -66,15 +67,20 @@ public class SerienResource {
         }
     }
 
-
+*/
     /**
      * get Information of one spezific serie identified by serienname
      * @param serienname
      * @return infos of one serie
      */
+
+    /*
     @GET
     @Path("/{Username}/create_Series")
     public Response getSerie(String serienname){
         return Response.ok().entity(SerializedSeriesRepository.getInstance().getSeriesObjectFromName(serienname)).build();
     }
+
+    */
+
 }

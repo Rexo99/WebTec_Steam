@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
-import de.hsh.steam.entities.Genre;
-import de.hsh.steam.entities.Rating;
-import de.hsh.steam.entities.Score;
-import de.hsh.steam.entities.Series;
-import de.hsh.steam.entities.Streamingprovider;
-import de.hsh.steam.entities.User;
+import de.hsh.steam.entities.*;
 
 // das SeriesDirectory ist eine Abstraktion der Datenbank
 // es hält alle Daten vor und bietet Funktionen zum Anlegen, Ändern und Suchen von Objekten 
@@ -102,11 +97,11 @@ public abstract class SeriesRepository  {
 	 * @param username
 	 * @return ArrayList<Series>
 	 */
-	public ArrayList<Series> getAllSeriesOfUser(String username) {
-		ArrayList<Series> allSeriesOfUser = new ArrayList<Series>();
+	public ArrayList<SeriesData> getAllSeriesOfUser(String username) {
+		ArrayList<SeriesData> allSeriesOfUser = new ArrayList<SeriesData>();
 		for (Series s : allSeries) {
 			if (s.isSeenBy(username))
-				allSeriesOfUser.add(s);
+				allSeriesOfUser.add(new SeriesData(s));
 		}
 		return allSeriesOfUser;
 	}

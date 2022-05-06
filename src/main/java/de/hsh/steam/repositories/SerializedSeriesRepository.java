@@ -9,13 +9,36 @@ import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
+import de.hsh.steam.entities.Genre;
 import de.hsh.steam.entities.Series;
+import de.hsh.steam.entities.Streamingprovider;
 import de.hsh.steam.entities.User;
 
 /**
  * Class SerializedSeriesRepository
  */
 public class SerializedSeriesRepository extends SeriesRepository {
+
+	public SerializedSeriesRepository(){
+		User u = new User("marvin", "123");
+		User l = new User("Luca", "1234");
+
+		Series s1 = new Series("Dinotopia", 2, Genre.Action, Streamingprovider.AmazonPrime);
+		Series s2 = new Series("Dinotopia reloaded",2,Genre.Documentary, Streamingprovider.Netflix);
+
+		registerUser(u);
+		registerUser(l);
+
+		addOrModifySeries(s1);
+		addOrModifySeries(s2);
+
+		s1.putOnWatchListOfUser(u);
+		s2.putOnWatchListOfUser(u);
+
+		s1.putOnWatchListOfUser(l);
+		s2.putOnWatchListOfUser(l);
+
+	}
 
 	private static SerializedSeriesRepository exemplar = null;
 

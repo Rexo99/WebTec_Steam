@@ -15,6 +15,7 @@ public class Series implements Serializable{
 	private Genre genre;
 	private Streamingprovider streamedBy;
 	private ArrayList<User> seenBy = new ArrayList<User>();
+
 	
 	/**
 	 * Constructor
