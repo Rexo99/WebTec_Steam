@@ -31,6 +31,8 @@ public class Series implements Serializable{
 		this.streamedBy = streamedBy;
 	}
 
+	public Series(){}
+
 	
 	/** 
 	 * @param u

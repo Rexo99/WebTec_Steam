@@ -18,6 +18,7 @@ public class User implements Serializable{
 	
 	private ArrayList<Rating> myRatings = new ArrayList<Rating>();
 
+	public User(){}
 	/**
 	 * Constructor
 	 * @param name
@@ -45,7 +46,7 @@ public class User implements Serializable{
 	 * @param remark
 	 */
 	// setzt neues Rating oder modifiziert vorhandenes Rating
-	public void rate(Series series, Score score, String remark) {
+	public void rate(String series, Score score, String remark) {
 		for (Rating r: myRatings) {
 			if ( r.getRatedSeries().equals(series) ) {
 				r.setScore(score);
@@ -53,7 +54,7 @@ public class User implements Serializable{
 				return;
 			}
 		}
-		Rating r = new Rating(score, remark, this, series);
+		Rating r = new Rating(score, remark, this.getUsername(), series);
 		myRatings.add(r);
 	}
 	
@@ -65,7 +66,7 @@ public class User implements Serializable{
 	 */
 	public Rating ratingOf(Series s) {
 		for (Rating r: myRatings) {
-			if (r.getRatedSeries() == s)
+			if (r.getRatedSeries() == s.getTitle())
 				return r;
 		}
 		return null;
@@ -107,5 +108,13 @@ public class User implements Serializable{
 			return true;
 		User u = (User) o;
 		return this.username == u.username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }
