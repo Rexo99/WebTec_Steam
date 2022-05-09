@@ -2,6 +2,7 @@ package de.hsh.steam.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Class User
@@ -9,16 +10,21 @@ import java.util.ArrayList;
 public class User implements Serializable{
 
 	private static final long serialVersionUID = -3545765962123273389L;
-	
-	// username ist eindeutig; darf nicht geändert werden
-	private String username; 
 
-	// password darf nicht geändert werden
+	private String id;
+	private String username;
 	private String password; 
 	
 	private ArrayList<Rating> myRatings = new ArrayList<Rating>();
 
-	public User(){}
+	public User(){
+		this.id = UUID.randomUUID().toString();
+	}
+
+	public String getId() {
+		return id;
+	}
+
 	/**
 	 * Constructor
 	 * @param name

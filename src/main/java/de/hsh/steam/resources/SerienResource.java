@@ -45,6 +45,13 @@ import java.util.ArrayList;
 public class SerienResource {
 
     @POST
+    @Path("/test")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response test(User u){
+        return Response.ok().entity("id: " + u.getId() + " ## Username: " + u.getUsername() ).build();
+    }
+
+    @POST
     @Path("/LogIn")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response logIn(User u){
