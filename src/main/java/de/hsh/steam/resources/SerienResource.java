@@ -13,6 +13,7 @@ import de.hsh.steam.entities.Series;
 import de.hsh.steam.entities.Streamingprovider;
 import de.hsh.steam.repositories.SerializedSeriesRepository;
 import de.hsh.steam.repositories.SeriesRepository;
+import de.hsh.steam.services.SteamService;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -30,6 +31,20 @@ import java.util.ArrayList;
  */
 @Path("serien")
 public class SerienResource {
+
+    @POST
+    @Path("/LogIn")
+    public Response logIn(String username, String password){
+
+        // check the log in data
+        boolean correct_logIn = SteamService.getInstance().login(username, password);
+
+        if(correct_logIn){
+            return Response.ok().build();
+        } else {
+            return Response.status(401).build(); // 401 = unauthorisiert
+        }
+    }
 
 
     // This is just a Test application
@@ -77,7 +92,6 @@ public class SerienResource {
         }
     }
     */
-
 
 
 
