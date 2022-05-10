@@ -99,13 +99,19 @@ public class SerienResource {
     }
 
 
+
     /**
      * get Information of one spezific serie identified by serienname
      * @return infos of one serie
      */
-    @GET
-    @Path("/{Username}/{Seriesname}")
-    public Response getSerie(@PathParam("Username") String username, @PathParam("Seriesname") String seriesname) {
+    @POST
+    @Path("/{Username}/search/{Serienname}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response searchSerie(@PathParam("Username")String username, @PathParam("Serienname") String seriesname){
+
+        // Es gibt ein funktion die searchSeries heißt nur die muss einen Score übergeben bekommen. Was istgendwie komisch ist.
+        //return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(username, s.getGenre(), s.getStreamedBy()));
+
         ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
         if (s.isEmpty()) return Response.status(404).build();
         for (int i = 0; i < s.size(); i++) {
@@ -118,6 +124,23 @@ public class SerienResource {
     }
 
     /**
+     * get Information of one spezific serie identified by serienname
+     * @return infos of one serie
+     */
+    @GET
+    @Path("/{Username}/{SerieId}")
+    public Response getSerie(@PathParam("Username")String username, @PathParam("SerieId")String serieId){
+        Series s = SerializedSeriesRepository.getInstance().getSerieWithId(serieId);
+
+        if ( s == null ){
+            return Response.status(404).entity("Serie wurde nicht gefunden").build();
+        } else {
+            return Response.ok().entity(s).build();
+        }
+    }
+
+    /**
+     *
      * @param username
      * @param r
      * @return
@@ -148,4 +171,7 @@ public class SerienResource {
             return Response.status(409).build(); //409 conflict username already exists
         }
     }
+
+
+
 }
