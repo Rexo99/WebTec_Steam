@@ -158,5 +158,19 @@ public class SerienResource {
 
     }
 
+    @POST
+    @Path("registerUser")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response registerUser(User user){
+        SerializedSeriesRepository repo = SerializedSeriesRepository.getInstance();
+        if (repo.getUserObject(user.getUsername()) == null){
+            repo.registerUser(user);
+            return Response.status(201).build();
+        } else {
+            return Response.status(409).build(); //409 conflict username already exists
+        }
+    }
+
+
 
 }
