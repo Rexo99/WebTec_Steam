@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 import de.hsh.steam.entities.*;
+import jakarta.ws.rs.POST;
 
 // das SeriesDirectory ist eine Abstraktion der Datenbank
 // es hält alle Daten vor und bietet Funktionen zum Anlegen, Ändern und Suchen von Objekten 
@@ -118,6 +119,19 @@ public abstract class SeriesRepository  {
 				allSeriesWithTitle.add(s);
 		}
 		return allSeriesWithTitle;
+	}
+
+	/**
+	 * Funktion wurde von uns selber geschreiben!
+	 * @param id
+	 * @return
+	 */
+	public Series getSerieWithId(String id){
+		for (Series s : allSeries) {
+			if (s.getId().equals(id))
+				return s;
+		}
+		return null;
 	}
 
 	
