@@ -47,20 +47,20 @@ public class SerienResource {
     @POST
     @Path("/test")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response test(User u){
-        return Response.ok().entity("id: " + u.getId() + " ## Username: " + u.getUsername() ).build();
+    public Response test(User u) {
+        return Response.ok().entity("id: " + u.getId() + " ## Username: " + u.getUsername()).build();
     }
 
     @POST
     @Path("/LogIn")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response logIn(User u){
+    public Response logIn(User u) {
 
         // check the log in data
 
         boolean correct_logIn = SteamService.getInstance().login(u.getUsername(), u.getPassword());
 
-        if(correct_logIn){
+        if (correct_logIn) {
             return Response.ok().build();
         } else {
             return Response.status(401).build(); // 401 = unauthorisiert
@@ -69,34 +69,34 @@ public class SerienResource {
 
     /**
      * show the home site of on user after log in
+     *
      * @param username
      * @return all Seires of the acutal user
      */
     @GET
     @Path("/{Username}")
-    public Response getHome(@PathParam("Username")String username){
+    public Response getHome(@PathParam("Username") String username) {
         return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(username)).build();
     }
 
 
-
     /**
      * create a new serie
+     *
      * @return the new serie
      */
     @POST
     @Path("/{Username}/create_Series")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addSerie(@PathParam("Username")String username, Series s){
-        try{
+    public Response addSerie(@PathParam("Username") String username, Series s) {
+        try {
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
             return Response.ok().entity(s.getTitle() + " wurde erstellt :).").build();
-        } catch (Exception e){
+        } catch (Exception e) {
             return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
         }
     }
-
 
 
     /**
@@ -105,11 +105,11 @@ public class SerienResource {
      */
     @GET
     @Path("/{Username}/{Seriesname}")
-    public Response getSerie(@PathParam("Username")String username, @PathParam("Seriesname")String seriesname){
+    public Response getSerie(@PathParam("Username") String username, @PathParam("Seriesname") String seriesname) {
         ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
-        if(s.isEmpty()) return Response.status(404).build();
-        for (int i = 0 ; i < s.size(); i++){
-            if(!s.get(i).isSeenBy(username)){
+        if (s.isEmpty()) return Response.status(404).build();
+        for (int i = 0; i < s.size(); i++) {
+            if (!s.get(i).isSeenBy(username)) {
                 s.remove(i);
                 i--;
             }
@@ -118,7 +118,6 @@ public class SerienResource {
     }
 
     /**
-     *
      * @param username
      * @param r
      * @return
@@ -126,8 +125,8 @@ public class SerienResource {
     @POST
     @Path("{Username}/rating")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response rate(@PathParam("Username")String username, Rating r){
-        if(username.equals(r.getRatingUser()) ){
+    public Response rate(@PathParam("Username") String username, Rating r) {
+        if (username.equals(r.getRatingUser())) {
             User u = SerializedSeriesRepository.getInstance().getUserObject(username);
             u.rate(r.getRatedSeries(), r.getScore(), r.getRemark());
             return Response.ok().entity("rate wurde erstellt").build();
@@ -140,16 +139,13 @@ public class SerienResource {
     @POST
     @Path("registerUser")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response registerUser(User user){
+    public Response registerUser(User user) {
         SerializedSeriesRepository repo = SerializedSeriesRepository.getInstance();
-        if (repo.getUserObject(user.getUsername()) == null){
+        if (repo.getUserObject(user.getUsername()) == null) {
             repo.registerUser(user);
             return Response.status(201).build();
         } else {
             return Response.status(409).build(); //409 conflict username already exists
         }
     }
-
-
-
 }
