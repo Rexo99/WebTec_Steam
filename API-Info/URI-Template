@@ -25,11 +25,11 @@ HTTP: GET
 REST: READ
 /api/serien/{Username}/{series} Zeigt alle Infos zu der ausgewählten Serie an
 
-HTTP: PUT
+HTTP: POST
 REST: CREATE
-/api/serien/{Username}/{series}/rating Rating für ausgewählte Serie angeben
+/api/serien/{Username}/rating Rating für ausgewählte Serie angeben
 
-HTTP: PUT
+HTTP: POST
 REST: CREATE
 /api/serien/{Username}/{series}/note Bemerkung für ausgewählte Serie angeben
 
