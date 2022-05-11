@@ -27,10 +27,8 @@ Eingabe:
 
 package de.hsh.steam.resources;
 
-import com.sun.imageio.plugins.common.SimpleRenderedImage;
 import de.hsh.steam.entities.*;
 import de.hsh.steam.repositories.SerializedSeriesRepository;
-import de.hsh.steam.repositories.SeriesRepository;
 import de.hsh.steam.services.SteamService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
@@ -98,6 +96,12 @@ public class SerienResource {
     }
 
 
+    @POST
+    @Path("/{Username}/search")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response searchSerie(SeriesSearch s){
+        return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())).build();
+    }
 
     /**
      * get Information of one spezific serie identified by serienname
