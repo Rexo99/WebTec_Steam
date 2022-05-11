@@ -27,11 +27,7 @@ REST: READ
 
 HTTP: POST
 REST: CREATE
-/api/serien/{Username}/rating Rating für ausgewählte Serie angeben
-
-HTTP: POST
-REST: CREATE
-/api/serien/{Username}/{series}/note Bemerkung für ausgewählte Serie angeben
+/api/serien/{Username}/rating Rating mit Bemerkung für ausgewählte Serie angeben
 
 HTTP: POST
 REST: (CREATE) aber wahrscheinlich GET
