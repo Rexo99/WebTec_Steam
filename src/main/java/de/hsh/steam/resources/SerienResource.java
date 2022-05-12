@@ -55,13 +55,12 @@ public class SerienResource {
     public Response logIn(User u) {
 
         // check the log in data
-
         boolean correct_logIn = SteamService.getInstance().login(u.getUsername(), u.getPassword());
-
         if (correct_logIn) {
-            return Response.ok().build();
+            //return Response.ok().build();
+            return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(u.getUsername())).build();
         } else {
-            return Response.status(401).build(); // 401 = unauthorisiert
+            return Response.status(401).entity("Log In Daten waren falsch").build(); // 401 = unauthorisiert
         }
     }
 
@@ -80,7 +79,6 @@ public class SerienResource {
 
     /**
      * create a new serie
-     *
      * @return the new serie
      */
     @POST
@@ -88,6 +86,7 @@ public class SerienResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addSerie(@PathParam("Username") String username, Series s) {
         try {
+            // wir müssen noch testen ob die Serie bereits existiert
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
             return Response.ok().entity(s.getTitle() + " wurde erstellt :).").build();
@@ -97,6 +96,11 @@ public class SerienResource {
     }
 
 
+    /**
+     * seach a serie
+     * @param s seaching Parameter for a serie
+     * @return the seaching results
+     */
     @POST
     @Path("/{Username}/search")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -112,10 +116,6 @@ public class SerienResource {
     @Path("/{Username}/search/{Serienname}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response searchSerie(@PathParam("Username")String username, @PathParam("Serienname") String seriesname){
-
-        // Es gibt ein funktion die searchSeries heißt nur die muss einen Score übergeben bekommen. Was istgendwie komisch ist.
-        //return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(username, s.getGenre(), s.getStreamedBy()));
-
         ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
         if (s.isEmpty()) return Response.status(404).build();
         for (int i = 0; i < s.size(); i++) {

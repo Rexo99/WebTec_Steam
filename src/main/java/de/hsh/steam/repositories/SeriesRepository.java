@@ -169,31 +169,23 @@ public abstract class SeriesRepository  {
 		if (streamedBy != null && s.getStreamedBy() != streamedBy)
 			return false;
 		if (score != null) {
-			//System.out.println(username);
 			User u = this.getUserObject(username);
 			if (u!= null ) {
-				//System.out.println("User gefunden");
 				Rating r = u.ratingOf(s);
-				//System.out.println(r.getScore());
 				if (r != null && r.getScore() != score) {
-					//System.out.println("falscher Score");
 					return false;
 				}
-			} else { //falls kein user angegeben sollen die Scores aller User verglichen werden 
-				//System.out.println("user nicht gefunden")
-				for (User user: allUsers){
-					//System.out.println("versuche user: " + user.getUsername());
+			} else {
+				// sollte kein User gefunden werden, werden alle User durchsucht, ob einer die Serie bewertet hat.
+				for (User user: this.allUsers){
 					Rating r = user.ratingOf(s);
-					//System.out.println(r.getScore());
 					if (r != null && r.getScore() == score){
-						//System.out.println("richtiger Score");
 						return true;
-					}
-				}
-				//System.out.println("kein richtiger Score gefunden");
+					} // end if
+				} // end for
 				return false;
-			}
-		}	
+			} // end else
+		}
 		return true;
 	}
 	
