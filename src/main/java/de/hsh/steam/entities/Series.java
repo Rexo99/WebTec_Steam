@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 /**
  * Class Series
  */
+@XmlRootElement(name = "series")
 public class Series implements Serializable{
 	
 	private static final long serialVersionUID = 1130974711328366348L;
