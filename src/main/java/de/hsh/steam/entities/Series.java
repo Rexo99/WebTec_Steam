@@ -19,7 +19,6 @@ public class Series implements Serializable{
 	private Genre genre;
 	private Streamingprovider streamedBy;
 	private ArrayList<String> seenBy = new ArrayList<String>();
-	private String id;
 
 	
 	/**
@@ -34,16 +33,12 @@ public class Series implements Serializable{
 		this.numberOfSeasons = numberOfSeasons;
 		this.genre = genre;
 		this.streamedBy = streamedBy;
-		this.id = UUID.randomUUID().toString();
 	}
 
 	public Series(){
-		this.id = UUID.randomUUID().toString();
 	}
 
-	public String getId() {
-		return id;
-	}
+
 
 	/**
 	 * @param u
