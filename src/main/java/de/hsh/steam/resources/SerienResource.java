@@ -34,6 +34,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Template für Response
@@ -52,9 +53,9 @@ public class SerienResource {
      */
     @GET
     @Path("/{Username}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getHome(@PathParam("Username") String username) {
-        return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(username)).build();
+        GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(username)) {};
+        return Response.ok().entity(entity).build();
     }
 
     /**
@@ -200,7 +201,7 @@ public class SerienResource {
     @POST
     @Path("/LogIn")
     @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_XML)
     public Response logIn_XML(User u) {
 
         // check the log in data
@@ -211,6 +212,7 @@ public class SerienResource {
             return Response.status(401).entity("Log In Daten waren falsch").build(); // 401 = unauthorisiert
         }
     }
+
 
     /**
      * create a new serie
@@ -238,7 +240,7 @@ public class SerienResource {
     @POST
     @Path("/{Username}/search")
     @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_XML)
+    //@Produces(MediaType.APPLICATION_XML)
     public Response searchSerie_XML(SeriesSearch s){
         return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())).build();
     }
