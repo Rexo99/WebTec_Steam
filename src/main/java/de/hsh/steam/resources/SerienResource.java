@@ -52,6 +52,7 @@ public class SerienResource {
      */
     @GET
     @Path("/{Username}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getHome(@PathParam("Username") String username) {
         return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(username)).build();
     }
@@ -62,6 +63,7 @@ public class SerienResource {
      */
     @GET
     @Path("/{Username}/{SerieId}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getSerie(@PathParam("Username")String username, @PathParam("SerieId")String serieId){
         Series s = SerializedSeriesRepository.getInstance().getSerieWithId(serieId);
 
@@ -83,6 +85,7 @@ public class SerienResource {
     @POST
     @Path("/LogIn")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response logIn(User u) {
 
         // check the log in data
@@ -121,6 +124,7 @@ public class SerienResource {
     @POST
     @Path("/{Username}/search")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response searchSerie(SeriesSearch s){
         return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())).build();
     }
@@ -132,6 +136,7 @@ public class SerienResource {
     @POST
     @Path("/{Username}/search/{Serienname}")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response searchSerie(@PathParam("Username")String username, @PathParam("Serienname") String seriesname){
         ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
         if (s.isEmpty()) return Response.status(404).build();
@@ -195,17 +200,15 @@ public class SerienResource {
     @POST
     @Path("/LogIn")
     @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_XML)
-    public boolean logIn_XML(User u) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response logIn_XML(User u) {
 
         // check the log in data
         boolean correct_logIn = SteamService.getInstance().login(u.getUsername(), u.getPassword());
         if (correct_logIn) {
-            return true;
-            // return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(u.getUsername())).build();
+            return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(u.getUsername())).build();
         } else {
-            return false;
-            //return Response.status(401).entity("Log In Daten waren falsch").build(); // 401 = unauthorisiert
+            return Response.status(401).entity("Log In Daten waren falsch").build(); // 401 = unauthorisiert
         }
     }
 
@@ -235,6 +238,7 @@ public class SerienResource {
     @POST
     @Path("/{Username}/search")
     @Consumes(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_XML)
     public Response searchSerie_XML(SeriesSearch s){
         return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())).build();
     }
@@ -246,6 +250,7 @@ public class SerienResource {
     @POST
     @Path("/{Username}/search/{Serienname}")
     @Consumes(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_XML)
     public Response searchSerie_XML(@PathParam("Username")String username, @PathParam("Serienname") String seriesname){
         ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
         if (s.isEmpty()) return Response.status(404).build();

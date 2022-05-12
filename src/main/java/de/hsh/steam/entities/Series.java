@@ -7,7 +7,7 @@ import java.util.UUID;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 /**
- * Class Series
+ * Class Seriess
  */
 @XmlRootElement(name = "series")
 public class Series implements Serializable{

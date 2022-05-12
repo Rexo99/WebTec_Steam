@@ -4,22 +4,17 @@ HTTP: POST
 REST: CREATE
 /api/serien/registerUser/ fügt User hinzu,falls er noch nicht existiert
 
+HTTP: POST
+REST: READ
+/api/serien/LogIn/ im body werden jetzt username und password mitgeschickt
 
 HTTP: GET
 REST: READ
-/api/serien/Login/ Login-Fenster für die Anmeldung
-
-HTTP: POST
-REST: READ
-/api/serien/Login/ im body werden jetzt username und password mitgeschickt
-
-HTTP: POST
-REST: CREATE
 /api/serien/{Username}/ Homescreen für grobe Übersicht der Anwendung
 
 HTTP: POST
 REST: CREATE
-/api/serien/{Username}/creat_Series Formular für das hinzufügen von Serien
+/api/serien/{Username}/create_Series Formular für das hinzufügen von Serien
 
 HTTP: GET
 REST: READ
