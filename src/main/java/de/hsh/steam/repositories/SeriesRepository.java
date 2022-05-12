@@ -121,6 +121,7 @@ public abstract class SeriesRepository  {
 		return allSeriesWithTitle;
 	}
 
+
 	/**
 	 * Funktion wurde von uns selber geschreiben!
 	 * @param id
