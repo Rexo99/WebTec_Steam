@@ -42,13 +42,12 @@ import java.util.ArrayList;
 @Path("serien")
 public class SerienResource {
 
-    @POST
-    @Path("/test")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response test(User u) {
-        return Response.ok().entity("id: " + u.getId() + " ## Username: " + u.getUsername()).build();
-    }
 
+    /**
+     * Log in
+     * @param u User who wanna login
+     * @return
+     */
     @POST
     @Path("/LogIn")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -57,12 +56,12 @@ public class SerienResource {
         // check the log in data
         boolean correct_logIn = SteamService.getInstance().login(u.getUsername(), u.getPassword());
         if (correct_logIn) {
-            //return Response.ok().build();
             return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(u.getUsername())).build();
         } else {
             return Response.status(401).entity("Log In Daten waren falsch").build(); // 401 = unauthorisiert
         }
     }
+
 
     /**
      * show the home site of on user after log in
@@ -108,6 +107,7 @@ public class SerienResource {
         return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())).build();
     }
 
+
     /**
      * get Information of one spezific serie identified by serienname
      * @return infos of one serie
@@ -127,6 +127,7 @@ public class SerienResource {
         return Response.ok().entity(s).build();
     }
 
+
     /**
      * get Information of one spezific serie identified by serienname
      * @return infos of one serie
@@ -142,6 +143,7 @@ public class SerienResource {
             return Response.ok().entity(s).build();
         }
     }
+
 
     /**
      *
@@ -163,6 +165,12 @@ public class SerienResource {
 
     }
 
+
+    /**
+     * register a new User
+     * @param user username and password
+     * @return a response with statuscode
+     */
     @POST
     @Path("registerUser")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -175,7 +183,4 @@ public class SerienResource {
             return Response.status(409).build(); //409 conflict username already exists
         }
     }
-
-
-
 }
