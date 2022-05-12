@@ -17,7 +17,6 @@ public class Rating implements Serializable{
 	private String remark;
 	private String ratingUser;
 	private String ratedSeries;
-	private String id;
 	
 	/**
 	 * Constructor
@@ -32,7 +31,6 @@ public class Rating implements Serializable{
 		this.remark = remark;
 		this.ratingUser = ratingUser;
 		this.ratedSeries = ratedSeries;
-		this.id = UUID.randomUUID().toString();
 	}
 
 	public Rating(){}
@@ -110,7 +108,4 @@ public class Rating implements Serializable{
 			"}";
 	}
 
-	public String getId() {
-		return id;
-	}
 }
