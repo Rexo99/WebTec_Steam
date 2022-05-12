@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 import de.hsh.steam.entities.*;
+import jakarta.ws.rs.POST;
 
 // das SeriesDirectory ist eine Abstraktion der Datenbank
 // es hält alle Daten vor und bietet Funktionen zum Anlegen, Ändern und Suchen von Objekten 
@@ -120,6 +121,19 @@ public abstract class SeriesRepository  {
 		return allSeriesWithTitle;
 	}
 
+	/**
+	 * Funktion wurde von uns selber geschreiben!
+	 * @param id
+	 * @return
+	 */
+	public Series getSerieWithId(String id){
+		for (Series s : allSeries) {
+			if (s.getId().equals(id))
+				return s;
+		}
+		return null;
+	}
+
 	
 	/** 
 	 * @param username
@@ -161,8 +175,17 @@ public abstract class SeriesRepository  {
 				if (r != null && r.getScore() != score) {
 					return false;
 				}
-			}
-		}	
+			} else {
+				// sollte kein User gefunden werden, werden alle User durchsucht, ob einer die Serie bewertet hat.
+				for (User user: this.allUsers){
+					Rating r = user.ratingOf(s);
+					if (r != null && r.getScore() == score){
+						return true;
+					} // end if
+				} // end for
+				return false;
+			} // end else
+		}
 		return true;
 	}
 	

@@ -2,6 +2,7 @@ package de.hsh.steam.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Class User
@@ -9,14 +10,20 @@ import java.util.ArrayList;
 public class User implements Serializable{
 
 	private static final long serialVersionUID = -3545765962123273389L;
-	
-	// username ist eindeutig; darf nicht geändert werden
-	private String username; 
 
-	// password darf nicht geändert werden
+	private String id;
+	private String username;
 	private String password; 
 	
 	private ArrayList<Rating> myRatings = new ArrayList<Rating>();
+
+	public User(){
+		this.id = UUID.randomUUID().toString();
+	}
+
+	public String getId() {
+		return id;
+	}
 
 	/**
 	 * Constructor
@@ -45,7 +52,7 @@ public class User implements Serializable{
 	 * @param remark
 	 */
 	// setzt neues Rating oder modifiziert vorhandenes Rating
-	public void rate(Series series, Score score, String remark) {
+	public void rate(String series, Score score, String remark) {
 		for (Rating r: myRatings) {
 			if ( r.getRatedSeries().equals(series) ) {
 				r.setScore(score);
@@ -53,7 +60,7 @@ public class User implements Serializable{
 				return;
 			}
 		}
-		Rating r = new Rating(score, remark, this, series);
+		Rating r = new Rating(score, remark, this.getUsername(), series);
 		myRatings.add(r);
 	}
 	
@@ -65,7 +72,7 @@ public class User implements Serializable{
 	 */
 	public Rating ratingOf(Series s) {
 		for (Rating r: myRatings) {
-			if (r.getRatedSeries() == s)
+			if (r.getRatedSeries() == s.getTitle())
 				return r;
 		}
 		return null;
@@ -107,5 +114,13 @@ public class User implements Serializable{
 			return true;
 		User u = (User) o;
 		return this.username == u.username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }

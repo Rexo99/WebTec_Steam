@@ -77,7 +77,7 @@ public class SteamService {
 		User u = repository.getUserObject(username);
 		if (u != null) {
 			series.putOnWatchListOfUser(u.getUsername());
-			u.rate(series, score, remark);
+			u.rate(series.getTitle(), score, remark);
 		}
 		LOG.info("Created Series " + series.getTitle() + " for user " + u.getUsername());
 		repository.saveData();

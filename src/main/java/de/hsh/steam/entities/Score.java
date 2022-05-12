@@ -10,6 +10,7 @@ public enum Score implements Serializable {
 	bad, 
 	mediocre, 
 	good, 
-	very_good;
+	very_good,
+	amazing;
 	
 }

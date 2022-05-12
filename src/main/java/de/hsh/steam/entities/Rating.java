@@ -1,6 +1,7 @@
 package de.hsh.steam.entities;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * Class Rating
@@ -11,8 +12,9 @@ public class Rating implements Serializable{
 	
 	private Score score;
 	private String remark;
-	private User ratingUser;
-	private Series ratedSeries;
+	private String ratingUser;
+	private String ratedSeries;
+	private String id;
 	
 	/**
 	 * Constructor
@@ -21,14 +23,16 @@ public class Rating implements Serializable{
 	 * @param ratingUser
 	 * @param ratedSeries
 	 */
-	public Rating(Score score, String remark, User ratingUser, Series ratedSeries) {
+	public Rating(Score score, String remark, String ratingUser, String ratedSeries) {
 		super();
 		this.score = score;
 		this.remark = remark;
 		this.ratingUser = ratingUser;
 		this.ratedSeries = ratedSeries;
+		this.id = UUID.randomUUID().toString();
 	}
 
+	public Rating(){}
 	
 	/** 
 	 * @return Score
@@ -65,7 +69,7 @@ public class Rating implements Serializable{
 	/** 
 	 * @return User
 	 */
-	public User getRatingUser() {
+	public String getRatingUser() {
 		return ratingUser;
 	}
 
@@ -73,7 +77,7 @@ public class Rating implements Serializable{
 	/** 
 	 * @param ofUser
 	 */
-	public void setRatingUser(User ofUser) {
+	public void setRatingUser(String ofUser) {
 		this.ratingUser = ofUser;
 	}
 
@@ -81,14 +85,14 @@ public class Rating implements Serializable{
 	/** 
 	 * @return Series
 	 */
-	public Series getRatedSeries() {
+	public String getRatedSeries() {
 		return ratedSeries;
 	}
 
 	/** 
 	 * @param ofSeries
 	 */
-	public void setRatedSeries(Series ofSeries) {
+	public void setRatedSeries(String ofSeries) {
 		this.ratedSeries = ofSeries;
 	}
 
@@ -103,5 +107,7 @@ public class Rating implements Serializable{
 			"}";
 	}
 
-
+	public String getId() {
+		return id;
+	}
 }
