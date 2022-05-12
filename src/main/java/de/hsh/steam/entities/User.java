@@ -1,5 +1,7 @@
 package de.hsh.steam.entities;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -7,6 +9,7 @@ import java.util.UUID;
 /**
  * Class User
  */
+@XmlRootElement
 public class User implements Serializable{
 
 	private static final long serialVersionUID = -3545765962123273389L;
