@@ -45,6 +45,7 @@ public class SerienResource {
 
     /**
      * Log in
+     *
      * @param u User who wanna login
      * @return
      */
@@ -78,6 +79,7 @@ public class SerienResource {
 
     /**
      * create a new serie
+     *
      * @return the new serie
      */
     @POST
@@ -97,25 +99,27 @@ public class SerienResource {
 
     /**
      * seach a serie
+     *
      * @param s seaching Parameter for a serie
      * @return the seaching results
      */
     @POST
     @Path("/{Username}/search")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response searchSerie(SeriesSearch s){
+    public Response searchSerie(SeriesSearch s) {
         return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())).build();
     }
 
 
     /**
      * get Information of one spezific serie identified by serienname
+     *
      * @return infos of one serie
      */
     @POST
     @Path("/{Username}/search/{Serienname}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response searchSerie(@PathParam("Username")String username, @PathParam("Serienname") String seriesname){
+    public Response searchSerie(@PathParam("Username") String username, @PathParam("Serienname") String seriesname) {
         ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
         if (s.isEmpty()) return Response.status(404).build();
         for (int i = 0; i < s.size(); i++) {
@@ -130,14 +134,15 @@ public class SerienResource {
 
     /**
      * get Information of one spezific serie identified by serienname
+     *
      * @return infos of one serie
      */
     @GET
     @Path("/{Username}/{SerieId}")
-    public Response getSerie(@PathParam("Username")String username, @PathParam("SerieId")String serieId){
+    public Response getSerie(@PathParam("Username") String username, @PathParam("SerieId") String serieId) {
         Series s = SerializedSeriesRepository.getInstance().getSerieWithId(serieId);
 
-        if ( s == null ){
+        if (s == null) {
             return Response.status(404).entity("Serie wurde nicht gefunden").build();
         } else {
             return Response.ok().entity(s).build();
@@ -146,7 +151,6 @@ public class SerienResource {
 
 
     /**
-     *
      * @param username
      * @param r
      * @return
@@ -168,6 +172,7 @@ public class SerienResource {
 
     /**
      * register a new User
+     *
      * @param user username and password
      * @return a response with statuscode
      */
@@ -183,4 +188,26 @@ public class SerienResource {
             return Response.status(409).build(); //409 conflict username already exists
         }
     }
+
+    /**
+     * @param seriesname
+     * @return ArrayList mit Rating Opjekten
+     */
+    @GET
+    @Path("/{Username}/{seriesname}/rating")
+    public Response getRating(@PathParam("seriesname") String seriesname) {
+        SerializedSeriesRepository repo = SerializedSeriesRepository.getInstance();
+        ArrayList<Rating> ratings = new ArrayList<>();
+        ArrayList<User> allUsers = repo.getAllUsers();
+        for (User user : allUsers) {
+            Series testSeries = repo.getSeriesObjectFromName(seriesname);
+            Rating rating = user.ratingOf(testSeries);
+            if (rating != null) {
+                ratings.add(rating);
+            }
+        }
+        return Response.ok().entity(ratings).build();
+    }
+
+
 }

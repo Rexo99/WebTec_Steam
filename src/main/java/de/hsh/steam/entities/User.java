@@ -72,7 +72,7 @@ public class User implements Serializable{
 	 */
 	public Rating ratingOf(Series s) {
 		for (Rating r: myRatings) {
-			if (r.getRatedSeries() == s.getTitle())
+			if (r.getRatedSeries().equals(s.getTitle()))
 				return r;
 		}
 		return null;
@@ -113,7 +113,7 @@ public class User implements Serializable{
 		if (o == this)
 			return true;
 		User u = (User) o;
-		return this.username == u.username;
+		return this.username.equals(u.username);
 	}
 
 	public void setPassword(String password) {
