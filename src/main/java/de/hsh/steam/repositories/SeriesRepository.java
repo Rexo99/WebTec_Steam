@@ -121,20 +121,6 @@ public abstract class SeriesRepository  {
 		return allSeriesWithTitle;
 	}
 
-
-	/**
-	 * Funktion wurde von uns selber geschreiben!
-	 * @param id
-	 * @return
-	 */
-	public Series getSerieWithId(String id){
-		for (Series s : allSeries) {
-			if (s.getId().equals(id))
-				return s;
-		}
-		return null;
-	}
-
 	
 	/** 
 	 * @param username

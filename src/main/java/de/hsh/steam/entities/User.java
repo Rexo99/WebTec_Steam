@@ -14,19 +14,15 @@ public class User implements Serializable{
 
 	private static final long serialVersionUID = -3545765962123273389L;
 
-	private String id;
 	private String username;
 	private String password; 
 	
 	private ArrayList<Rating> myRatings = new ArrayList<Rating>();
 
 	public User(){
-		this.id = UUID.randomUUID().toString();
+
 	}
 
-	public String getId() {
-		return id;
-	}
 
 	/**
 	 * Constructor

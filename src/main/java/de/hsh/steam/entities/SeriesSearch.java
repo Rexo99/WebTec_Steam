@@ -1,5 +1,11 @@
 package de.hsh.steam.entities;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+/**
+ * Data Class for search function
+ */
+@XmlRootElement(name ="seriessearch")
 public class SeriesSearch {
     private String username;
     private Genre genre;

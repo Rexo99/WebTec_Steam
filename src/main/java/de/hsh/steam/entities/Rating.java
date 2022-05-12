@@ -3,9 +3,12 @@ package de.hsh.steam.entities;
 import java.io.Serializable;
 import java.util.UUID;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 /**
  * Class Rating
  */
+@XmlRootElement(name = "rating")
 public class Rating implements Serializable{
 
 	private static final long serialVersionUID = -7806234457596021877L;
@@ -14,7 +17,6 @@ public class Rating implements Serializable{
 	private String remark;
 	private String ratingUser;
 	private String ratedSeries;
-	private String id;
 	
 	/**
 	 * Constructor
@@ -29,7 +31,6 @@ public class Rating implements Serializable{
 		this.remark = remark;
 		this.ratingUser = ratingUser;
 		this.ratedSeries = ratedSeries;
-		this.id = UUID.randomUUID().toString();
 	}
 
 	public Rating(){}
@@ -107,7 +108,4 @@ public class Rating implements Serializable{
 			"}";
 	}
 
-	public String getId() {
-		return id;
-	}
 }

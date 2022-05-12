@@ -1,34 +1,45 @@
 Anwendung zum streamen von Serien
 
-HTTP: POST
-REST: CREATE
-/api/serien/registerUser/ fügt User hinzu,falls er noch nicht existiert
-
+HTTP: GET
+REST: READ
+URI: /api/serien/{Username}
+Beschreibung: Gibt alle Serien des Users zurück
 
 HTTP: GET
 REST: READ
-/api/serien/Login/ Login-Fenster für die Anmeldung
-
-HTTP: POST
-REST: READ
-/api/serien/Login/ im body werden jetzt username und password mitgeschickt
-
-HTTP: POST
-REST: CREATE
-/api/serien/{Username}/ Homescreen für grobe Übersicht der Anwendung
-
-HTTP: POST
-REST: CREATE
-/api/serien/{Username}/creat_Series Formular für das hinzufügen von Serien
+URI: /api/serien/{Username}/{SeriesName}
+Beschreibung: Gibt die ausgewählte Serie zurück
 
 HTTP: GET
 REST: READ
-/api/serien/{Username}/{series} Zeigt alle Infos zu der ausgewählten Serie an
+URI: /api/serien/{Username}/searchByName/{Seriename}
+Beschreibung: Durchsucht alle Serien nach dem Namen
+
+HTTP: POST
+REST: READ
+URI: /api/serien/LogIn
+Beschreibung: Gibt alle Serien des Users zurück, wenn die Anmeldung erfolgreich war.
 
 HTTP: POST
 REST: CREATE
-/api/serien/{Username}/rating Rating mit Bemerkung für ausgewählte Serie angeben
+URI: /api/serien/{Username}/create_Series
+Beschreibung: Fügt eine neue Serie dem Benutzer hinzu.
 
 HTTP: POST
-REST: (CREATE) aber wahrscheinlich GET
-/api/serien/{Username}/search/
+REST: CREATE
+URI: /api/serien/{Username}/search/
+Beschreibung: Serien können nach Attributen außer dem Titel gesucht werden.
+
+HTTP: POST
+REST: CREATE
+URI: /api/serien/{Username}/rating
+Beschreibung: Rating mit Bemerkung für ausgewählte Serie erstellen
+
+HTTP: POST
+REST: CREATE
+URI: /api/serien/registerUser/
+Beschreibung: Fügt User hinzu, falls er noch nicht existiert.
+
+
+
+
