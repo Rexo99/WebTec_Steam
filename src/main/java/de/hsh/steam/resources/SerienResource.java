@@ -181,4 +181,26 @@ public class SerienResource {
             return Response.status(409).build(); //409 conflict username already exists
         }
     }
+
+    /**
+     * @param seriesname
+     * @return ArrayList mit Rating Opjekten
+     */
+    @GET
+    @Path("/{Username}/{seriesname}/rating")
+    public Response getRating(@PathParam("seriesname") String seriesname) {
+        SerializedSeriesRepository repo = SerializedSeriesRepository.getInstance();
+        ArrayList<Rating> ratings = new ArrayList<>();
+        ArrayList<User> allUsers = repo.getAllUsers();
+        for (User user : allUsers) {
+            Series testSeries = repo.getSeriesObjectFromName(seriesname);
+            Rating rating = user.ratingOf(testSeries);
+            if (rating != null) {
+                ratings.add(rating);
+            }
+        }
+        return Response.ok().entity(ratings).build();
+    }
+
+
 }
