@@ -108,11 +108,29 @@ public class SerienResource {
             // wir müssen noch testen ob die Serie bereits existiert
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
-            return Response.ok().entity(s.getTitle() + " wurde erstellt :).").build();
+            return Response.ok().entity(s.getTitle() + " wurde erstellt.").build();
         } catch (Exception e) {
             return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
         }
     }
+
+    /**
+     * create a new serie
+     * @return the new serie
+     */
+    @POST
+    @Path("/{Username}/modify_Series")
+    public Response modifySerie(@PathParam("Username") String username, Series s) {
+        try {
+            // wir müssen noch testen ob die Serie bereits existiert
+            Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
+            a.putOnWatchListOfUser(username);
+            return Response.ok().entity(s.getTitle() + " wurde bearbeitet.").build();
+        } catch (Exception e) {
+            return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
+        }
+    }
+
 
     /**
      * seach a serie
