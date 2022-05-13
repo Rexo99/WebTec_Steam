@@ -1,8 +1,8 @@
 {
 	"info": {
-		"_postman_id": "1681fe98-0fd6-43b7-8f38-fe786c34ec07",
+		"_postman_id": "7ce297ef-f8e9-45f0-8181-1ad139fcedab",
 		"name": "Webtech_tests",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -19,20 +19,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/Luca/create_Series",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"Luca",
-						"create_Series"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/Luca/create_Series"
 			},
 			"response": []
 		},
@@ -40,30 +27,28 @@
 			"name": "create_Serie_JSON",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n        \"genre\": \"Drama\",\n        \"numberOfSeasons\": 35,\n        \"streamedBy\": \"AmazonPrime\",\n        \"title\": \"Ich weis es doch nicht\"\n    }",
+					"raw": "{\n        \"genre\": \"Drama\",\n        \"numberOfSeasons\": 35,\n        \"streamedBy\": \"AmazonPrime\",\n        \"title\": \"Student vs Webtech\"\n    }",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/Luca/create_Series",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"Luca",
-						"create_Series"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/Luca/create_Series"
 			},
 			"response": []
 		},
@@ -71,20 +56,14 @@
 			"name": "getAllSerien",
 			"request": {
 				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/Luca",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"Luca"
-					]
-				}
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"url": "localhost:8080/steam/api/serien/Luca"
 			},
 			"response": []
 		},
@@ -92,7 +71,18 @@
 			"name": "create_rating_JSON",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"ratedSeries\": \"Dinotopia reloaded\",\n    \"ratingUser\": \"Luca\",\n    \"score\": \"bad\",\n    \"remark\": \"absoluter Müll\"\n}",
@@ -102,20 +92,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/Luca/rating",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"Luca",
-						"rating"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/Luca/rating"
 			},
 			"response": []
 		},
@@ -123,7 +100,18 @@
 			"name": "search_JSON",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"username\": \"marvin\",\n    \"score\": \"bad\"\n}",
@@ -133,20 +121,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/Luca/search",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"Luca",
-						"search"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/Luca/search"
 			},
 			"response": []
 		},
@@ -154,7 +129,18 @@
 			"name": "create_rating_Xml",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "<rating>\n    <ratedSeries>Dinotopia</ratedSeries>\n    <ratingUser>Luca</ratingUser>\n    <score>amazing</score>\n    <remark>DINOS!!!</remark>\n</rating>",
@@ -164,20 +150,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/Luca/rating",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"Luca",
-						"rating"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/Luca/rating"
 			},
 			"response": []
 		},
@@ -185,7 +158,18 @@
 			"name": "search_Xml",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "<seriessearch>\n    <username>marvin</username>\n    <score>bad</score>\n</seriessearch>",
@@ -195,20 +179,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/Luca/search",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"Luca",
-						"search"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/Luca/search"
 			},
 			"response": []
 		},
@@ -216,7 +187,18 @@
 			"name": "registerUser_JSON",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"username\": \"testUser\",\n    \"password\": \"ein super sicheres Passwort\"\n}",
@@ -226,19 +208,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/registerUser",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"registerUser"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/registerUser"
 			},
 			"response": []
 		},
@@ -246,7 +216,18 @@
 			"name": "registerUser_Xml",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "<user>\n    <username>testXmlUser</username>\n    <password>test</password>\n</user>",
@@ -256,19 +237,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/registerUser",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"registerUser"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/registerUser"
 			},
 			"response": []
 		},
@@ -276,7 +245,18 @@
 			"name": "LogIn_JSON",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"username\": \"Luca\",\n    \"password\": \"1234\"\n}",
@@ -286,19 +266,7 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/LogIn",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"LogIn"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/LogIn"
 			},
 			"response": []
 		},
@@ -306,7 +274,18 @@
 			"name": "LogIn_Xml",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "<user>\n    <username>Luca</username>\n    <password>1234</password>\n</user>",
@@ -316,19 +295,22 @@
 						}
 					}
 				},
-				"url": {
-					"raw": "localhost:8080/steam/api/serien/LogIn",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"steam",
-						"api",
-						"serien",
-						"LogIn"
-					]
-				}
+				"url": "localhost:8080/steam/api/serien/LogIn"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllSerien_json",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "localhost:8080/steam/api/serien/Luca"
 			},
 			"response": []
 		}
