@@ -1,0 +1,6 @@
+
+<!ELEMENT Series (genre, numberOfSeasons, streamedBy, titel)>
+        <!ELEMENT genre (#PCDATA)>
+        <!ELEMENT numberOfSeasons (#PCDATA)>
+        <!ELEMENT streamedBy (#PCDATA)>
+        <!ELEMENT titel (#PCDATA)>
