@@ -1,13 +1,15 @@
 # WebTec_Steam
 
-Marvin Pieper 1480547
-Jan Pierre Wesche 1583926
-Erik Hinkelmanns 1583861
-Luca Seliger 1583243
+Pieper Marvin 1480547
+Wesche Jan Pierre 1583926
+Hinkelmanns Erik 1583861
+Seliger Luca 1583243
 
-## Ausführen
-1. mvn package (compiled das Projekt neu)
-2. mvn cargo:redeploy (hier wissen wir nicht genau was es macht, der Befehl muss aber ausgeführt werden.
+## Testen
+Zuerst müssen sie die Webtech_test.postman_collection.json in Postman importieren
+![](images/Bildschirmfoto 2022-05-13 um 10.37.43.png)
+Die Endung der
+
 
 HTML,CSS,javascript [Marvin]
 
