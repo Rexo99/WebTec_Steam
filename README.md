@@ -9,3 +9,4 @@ Luca Seliger 1583243
 ## Ausführen
 1. mvn package (compiled das Projekt neu)
 2. mvn cargo:redeploy (hier wissen wir nicht genau was es macht, der Befehl muss aber ausgeführt werden. 
+
