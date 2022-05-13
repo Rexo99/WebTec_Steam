@@ -55,7 +55,7 @@ public class SerienResource {
     @Path("/{Username}")
     public Response getHome(@PathParam("Username") String username) {
         GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(username)) {};
-        return Response.ok().entity(entity).build();
+        return Response.ok().status(200).entity(entity).build();
     }
 
     /**
@@ -70,7 +70,7 @@ public class SerienResource {
         if ( s == null ){
             return Response.status(404).entity("Serie wurde nicht gefunden").build();
         } else {
-            return Response.ok().entity(s).build();
+            return Response.ok().status(200).entity(s).build();
         }
     }
 
@@ -90,7 +90,7 @@ public class SerienResource {
         boolean correct_logIn = SteamService.getInstance().login(u.getUsername(), u.getPassword());
         if (correct_logIn) {
             GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>( SerializedSeriesRepository.getInstance().getAllSeriesOfUser(u.getUsername()) ) {};
-            return Response.ok().entity(entity).build();
+            return Response.ok().status(200).entity(entity).build();
         } else {
             return Response.status(401).entity("Log In Daten waren falsch").build(); // 401 = unauthorisiert
         }
@@ -108,7 +108,7 @@ public class SerienResource {
             // wir müssen noch testen ob die Serie bereits existiert
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
-            return Response.ok().entity(s.getTitle() + " wurde erstellt.").build();
+            return Response.ok().status(200).entity(s.getTitle() + " wurde erstellt.").build();
         } catch (Exception e) {
             return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
         }
@@ -125,7 +125,7 @@ public class SerienResource {
             // wir müssen noch testen ob die Serie bereits existiert
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
-            return Response.ok().entity(s.getTitle() + " wurde bearbeitet.").build();
+            return Response.ok().status(200).entity(s.getTitle() + " wurde bearbeitet.").build();
         } catch (Exception e) {
             return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
         }
@@ -141,7 +141,7 @@ public class SerienResource {
     @Path("/{Username}/search")
     public Response searchSerie(SeriesSearch s){
         GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>( SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore()) ) {};
-        return Response.ok().entity( entity ).build();
+        return Response.ok().status(200).entity( entity ).build();
     }
 
     /**
@@ -160,7 +160,7 @@ public class SerienResource {
             }
         }
         GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>( s ) {};
-        return Response.ok().entity(entity).build();
+        return Response.ok().status(200).entity(entity).build();
     }
 
     /**
@@ -175,7 +175,7 @@ public class SerienResource {
         if (username.equals(r.getRatingUser())) {
             User u = SerializedSeriesRepository.getInstance().getUserObject(username);
             u.rate(r.getRatedSeries(), r.getScore(), r.getRemark());
-            return Response.ok().entity("rate wurde erstellt").build();
+            return Response.ok().status(200).entity("rate wurde erstellt").build();
         } else {
             return Response.status(400).entity("Das war dumm " + username + " ## r.User: " + r.getRatingUser() + " ## Serie: " + r.getRatedSeries()).build(); // User und rating user sind nicht identisch hier muss noch ein fehler code rausgesucht werden.
         }
@@ -217,8 +217,6 @@ public class SerienResource {
                 ratings.add(rating);
             }
         }
-        return Response.ok().entity(ratings).build();
+        return Response.ok().status(200).entity(ratings).build();
     }
-
-
 }
