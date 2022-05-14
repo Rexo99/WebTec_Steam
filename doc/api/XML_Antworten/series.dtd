@@ -1,4 +1,4 @@
-<!ELEMENT Series (genre,numberOfSeasons,seenBy,streamedBy,title)
+<!ELEMENT series (genre,numberOfSeasons,seenBy,streamedBy,title)
         <!ELEMENT genre (#PCDATA)>
         <!ELEMENT numberOfSeasons (#PCDATA)>
         <!ELEMENT seenBy (user+)>

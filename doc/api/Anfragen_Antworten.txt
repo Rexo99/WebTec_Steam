@@ -1,16 +1,3 @@
-JSON:
-Serien Format:
-{
-  "Serie": {
-    "Titel": "Titel der Serie",
-    "Genre": "Genre der Serie",
-    "Staffeln": "Anzahl der Staffeln",
-    "Platform": "Platform auf der die Serie zu finden ist",
-    "Rating": "Rating der Serie",
-    "Bemerkung": "Bemerkung zur Serie"
-  }
-}
-
 Serien Anfrage allgemein (POST):
 suchbegriff //Body in Post-Anfrage (es wird keine Json mitgeschickt)
 

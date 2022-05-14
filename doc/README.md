@@ -15,11 +15,14 @@ Die Endung der jeweiligen Tests beschreibt das Rückgabeformat.
 
 Anschließend können sie wie gewohnt, mit dem testen anfangen.
 
+## API
+
+Die DTD'S und Json's sind jeweils nach dem entity's (Klassen) benannt, die sie repräsentieren.
 
 
-HTML,CSS,javascript [Marvin]
+HTML,CSS,javascript [Marvin,Jan]
 
-Wireframe [Luca,Marvin,Erik]
+Wireframe [Luca,Marvin,Erik,Jan]
 
 Entwurf [Luca,Erik]
 
@@ -38,6 +41,10 @@ SeriesReposetory
 -getSeriesWithID [Marvin]
 
 run.bash [Marvin] ;)
+
+README.md [Erik]
+
+DTD's Json's [Erik,Jan]
 
 
 
