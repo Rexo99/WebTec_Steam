@@ -1,0 +1,3 @@
+<!ELEMENT seriessearch (username,score)>
+        <!ELEMENT username (#PCDATA)>
+        <!ELEMENT score (#PCDATA)>

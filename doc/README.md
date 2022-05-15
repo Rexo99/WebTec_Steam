@@ -6,14 +6,23 @@ Hinkelmanns Erik 1583861
 Seliger Luca 1583243
 
 ## Testen
-Zuerst müssen sie die Webtech_test.postman_collection.json in Postman importieren
+Zuerst müssen sie die Webtech_test.postman_collection.json in Postman importieren.
 ![](images/Bildschirmfoto 2022-05-13 um 10.37.43.png)
-Die Endung der
 
 
-HTML,CSS,javascript [Marvin]
+Die Endung der jeweiligen Tests beschreibt das Rückgabeformat.
+![](images/Bildschirmfoto 2022-05-13 um 11.06.36.png)
 
-Wireframe [Luca,Marvin,Erik]
+Anschließend können sie wie gewohnt, mit dem testen anfangen.
+
+## API
+
+Die DTD'S und Json's sind jeweils nach dem entity's (Klassen) benannt, die sie repräsentieren.
+
+
+HTML,CSS,javascript [Marvin,Jan]
+
+Wireframe [Luca,Marvin,Erik,Jan]
 
 Entwurf [Luca,Erik]
 
@@ -32,6 +41,10 @@ SeriesReposetory
 -getSeriesWithID [Marvin]
 
 run.bash [Marvin] ;)
+
+README.md [Erik]
+
+DTD's Json's [Erik,Jan]
 
 
 
