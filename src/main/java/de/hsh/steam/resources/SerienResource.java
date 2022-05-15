@@ -105,12 +105,11 @@ public class SerienResource {
     @Path("/{Username}/create_Series")
     public Response addSerie(@PathParam("Username") String username, Series s) {
         try {
-            // wir müssen noch testen ob die Serie bereits existiert
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
-            return Response.ok().status(200).entity(s.getTitle() + " wurde erstellt.").build();
+            return Response.ok().status(201).entity(s.getTitle() + " wurde erstellt.").build();
         } catch (Exception e) {
-            return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
+            return Response.status(409).build();
         }
     }
 
@@ -122,7 +121,6 @@ public class SerienResource {
     @Path("/{Username}/modify_Series")
     public Response modifySerie(@PathParam("Username") String username, Series s) {
         try {
-            // wir müssen noch testen ob die Serie bereits existiert
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
             return Response.ok().status(200).entity(s.getTitle() + " wurde bearbeitet.").build();
@@ -140,7 +138,7 @@ public class SerienResource {
     @POST
     @Path("/{Username}/search")
     public Response searchSerie(SeriesSearch s){
-        GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>( SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore()) ) {};
+        GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>( SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())) {};
         return Response.ok().status(200).entity( entity ).build();
     }
 
@@ -175,9 +173,9 @@ public class SerienResource {
         if (username.equals(r.getRatingUser())) {
             User u = SerializedSeriesRepository.getInstance().getUserObject(username);
             u.rate(r.getRatedSeries(), r.getScore(), r.getRemark());
-            return Response.ok().status(200).entity("rate wurde erstellt").build();
+            return Response.ok().status(201).entity("rate wurde erstellt").build();
         } else {
-            return Response.status(400).entity("Das war dumm " + username + " ## r.User: " + r.getRatingUser() + " ## Serie: " + r.getRatedSeries()).build(); // User und rating user sind nicht identisch hier muss noch ein fehler code rausgesucht werden.
+            return Response.status(409).entity("Rating konnte nicht erstellt werden").build();
         }
 
     }
