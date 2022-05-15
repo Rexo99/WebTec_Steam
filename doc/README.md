@@ -38,9 +38,8 @@ SeriesSearch [Luca,Marvin]
 
 SeriesReposetory 
 -SearchSeries [Luca,Marvin]
--getSeriesWithID [Marvin]
 
-run.bash [Marvin] ;)
+run.bash [Marvin,Jan]
 
 README.md [Erik,Jan]
 
