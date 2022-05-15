@@ -125,7 +125,7 @@ public class SerienResource {
             a.putOnWatchListOfUser(username);
             return Response.ok().status(200).entity(s.getTitle() + " wurde bearbeitet.").build();
         } catch (Exception e) {
-            return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
+            return Response.status(409).build();
         }
     }
 
