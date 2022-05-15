@@ -96,7 +96,6 @@ public class SerienResource {
         }
     }
 
-
     /**
      * create a new serie
      * @return the new serie
@@ -130,7 +129,6 @@ public class SerienResource {
             return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
         }
     }
-
 
     /**
      * seach a serie
@@ -179,9 +177,7 @@ public class SerienResource {
         } else {
             return Response.status(400).entity("Das war dumm " + username + " ## r.User: " + r.getRatingUser() + " ## Serie: " + r.getRatedSeries()).build(); // User und rating user sind nicht identisch hier muss noch ein fehler code rausgesucht werden.
         }
-
     }
-
 
     /**
      * register a new User
