@@ -32,7 +32,7 @@ SerienResource [Luca,Marvin,Erik]
 
 Anfragen_Antworten.txt [Luca,Erik]
 
-Serie_Entwurf [Luca]
+Serie_Entwurf [Luca,Jan]
 
 SeriesSearch [Luca,Marvin]
 
@@ -42,7 +42,7 @@ SeriesReposetory
 
 run.bash [Marvin] ;)
 
-README.md [Erik]
+README.md [Erik,Jan]
 
 DTD's Json's [Erik,Jan]
 
