@@ -1,3 +1,24 @@
+3.4. Entwurf einer REST-Schnittstelle
+ Ressourcen:
+ - Serien
+    - Rating
+        - score
+        - remark
+        - ratingSeries
+        - ratedSeries
+    - Platform
+    - Genre
+    - Anzahl Staffeln
+    - Titel
+    - Bemerkung
+
+ - User
+    - Username
+    - Password
+
+
+URI-Template
+
 Anwendung zum streamen von Serien
 
 HTTP: GET
@@ -39,7 +60,3 @@ HTTP: POST
 REST: CREATE
 URI: /api/serien/registerUser/
 Beschreibung: Fügt User hinzu, falls er noch nicht existiert.
-
-
-
-
