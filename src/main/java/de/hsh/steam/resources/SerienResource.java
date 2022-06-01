@@ -34,6 +34,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Template für Response
@@ -52,9 +53,9 @@ public class SerienResource {
      */
     @GET
     @Path("/{Username}")
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getHome(@PathParam("Username") String username) {
-        return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(username)).build();
+        GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(username)) {};
+        return Response.ok().status(200).entity(entity).build();
     }
 
     /**
@@ -62,20 +63,19 @@ public class SerienResource {
      * @return infos of one serie
      */
     @GET
-    @Path("/{Username}/{SerieId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getSerie(@PathParam("Username")String username, @PathParam("SerieId")String serieId){
-        Series s = SerializedSeriesRepository.getInstance().getSerieWithId(serieId);
+    @Path("/{Username}/{SeriesName}")
+    public Response getSerie(@PathParam("Username")String username, @PathParam("SeriesName")String seriesName){
+        Series s = SerializedSeriesRepository.getInstance().getSeriesObjectFromName(seriesName);
 
         if ( s == null ){
             return Response.status(404).entity("Serie wurde nicht gefunden").build();
         } else {
-            return Response.ok().entity(s).build();
+            return Response.ok().status(200).entity(s).build();
         }
     }
 
 
-    // ############################ Post JSON ############################
+    // ############################ Post ############################
 
     /**
      * Log in
@@ -84,14 +84,13 @@ public class SerienResource {
      */
     @POST
     @Path("/LogIn")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response logIn(User u) {
 
         // check the log in data
         boolean correct_logIn = SteamService.getInstance().login(u.getUsername(), u.getPassword());
         if (correct_logIn) {
-            return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(u.getUsername())).build();
+            GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>( SerializedSeriesRepository.getInstance().getAllSeriesOfUser(u.getUsername()) ) {};
+            return Response.ok().status(200).entity(entity).build();
         } else {
             return Response.status(401).entity("Log In Daten waren falsch").build(); // 401 = unauthorisiert
         }
@@ -104,17 +103,32 @@ public class SerienResource {
      */
     @POST
     @Path("/{Username}/create_Series")
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response addSerie(@PathParam("Username") String username, Series s) {
         try {
-            // wir müssen noch testen ob die Serie bereits existiert
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
-            return Response.ok().entity(s.getTitle() + " wurde erstellt :).").build();
+            return Response.ok().status(201).entity(s.getTitle() + " wurde erstellt.").build();
         } catch (Exception e) {
-            return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
+            return Response.status(409).build();
         }
     }
+
+    /**
+     * create a new serie
+     * @return the new serie
+     */
+    @POST
+    @Path("/{Username}/modify_Series")
+    public Response modifySerie(@PathParam("Username") String username, Series s) {
+        try {
+            Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
+            a.putOnWatchListOfUser(username);
+            return Response.ok().status(200).entity(s.getTitle() + " wurde bearbeitet.").build();
+        } catch (Exception e) {
+            return Response.status(409).build();
+        }
+    }
+
 
     /**
      * seach a serie
@@ -123,21 +137,18 @@ public class SerienResource {
      */
     @POST
     @Path("/{Username}/search")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response searchSerie(SeriesSearch s){
-        return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())).build();
+        GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>( SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())) {};
+        return Response.ok().status(200).entity( entity ).build();
     }
 
     /**
      * get Information of one spezific serie identified by serienname
      * @return infos of one serie
      */
-    @POST
-    @Path("/{Username}/search/{Serienname}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response searchSerie(@PathParam("Username")String username, @PathParam("Serienname") String seriesname){
+    @GET
+    @Path("/{Username}/searchByName/{Serienname}")
+    public Response searchSerieByName(@PathParam("Username")String username, @PathParam("Serienname") String seriesname){
         ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
         if (s.isEmpty()) return Response.status(404).build();
         for (int i = 0; i < s.size(); i++) {
@@ -146,7 +157,8 @@ public class SerienResource {
                 i--;
             }
         }
-        return Response.ok().entity(s).build();
+        GenericEntity<List<Series>> entity = new GenericEntity<List<Series>>( s ) {};
+        return Response.ok().status(200).entity(entity).build();
     }
 
     /**
@@ -157,14 +169,13 @@ public class SerienResource {
      */
     @POST
     @Path("{Username}/rating")
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response rate(@PathParam("Username") String username, Rating r) {
         if (username.equals(r.getRatingUser())) {
             User u = SerializedSeriesRepository.getInstance().getUserObject(username);
             u.rate(r.getRatedSeries(), r.getScore(), r.getRemark());
-            return Response.ok().entity("rate wurde erstellt").build();
+            return Response.ok().status(201).entity("rate wurde erstellt").build();
         } else {
-            return Response.status(400).entity("Das war dumm " + username + " ## r.User: " + r.getRatingUser() + " ## Serie: " + r.getRatedSeries()).build(); // User und rating user sind nicht identisch hier muss noch ein fehler code rausgesucht werden.
+            return Response.status(409).entity("Rating konnte nicht erstellt werden").build();
         }
 
     }
@@ -177,7 +188,6 @@ public class SerienResource {
      */
     @POST
     @Path("registerUser")
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response registerUser(User user) {
         SerializedSeriesRepository repo = SerializedSeriesRepository.getInstance();
         if (repo.getUserObject(user.getUsername()) == null) {
@@ -188,116 +198,23 @@ public class SerienResource {
         }
     }
 
-
-
-    // ############################ Post XML ############################
-
     /**
-     * Log in
-     * @param u User who wanna login
-     * @return
+     * @param seriesname
+     * @return ArrayList mit Rating Opjekten
      */
-    @POST
-    @Path("/LogIn")
-    @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response logIn_XML(User u) {
-
-        // check the log in data
-        boolean correct_logIn = SteamService.getInstance().login(u.getUsername(), u.getPassword());
-        if (correct_logIn) {
-            return Response.ok().entity(SerializedSeriesRepository.getInstance().getAllSeriesOfUser(u.getUsername())).build();
-        } else {
-            return Response.status(401).entity("Log In Daten waren falsch").build(); // 401 = unauthorisiert
-        }
-    }
-
-    /**
-     * create a new serie
-     * @return the new serie
-     */
-    @POST
-    @Path("/{Username}/create_Series")
-    @Consumes(MediaType.APPLICATION_XML)
-    public Response addSerie_XML(@PathParam("Username") String username, Series s) {
-        try {
-            // wir müssen noch testen ob die Serie bereits existiert
-            Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
-            a.putOnWatchListOfUser(username);
-            return Response.ok().entity(s.getTitle() + " wurde erstellt :).").build();
-        } catch (Exception e) {
-            return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
-        }
-    }
-
-    /**
-     * seach a serie
-     * @param s seaching Parameter for a serie
-     * @return the seaching results
-     */
-    @POST
-    @Path("/{Username}/search")
-    @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_XML)
-    public Response searchSerie_XML(SeriesSearch s){
-        return Response.ok().entity(SerializedSeriesRepository.getInstance().searchSeries(s.getUsername(), s.getGenre(), s.getProvider(), s.getScore())).build();
-    }
-
-    /**
-     * get Information of one spezific serie identified by serienname
-     * @return infos of one serie
-     */
-    @POST
-    @Path("/{Username}/search/{Serienname}")
-    @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_XML)
-    public Response searchSerie_XML(@PathParam("Username")String username, @PathParam("Serienname") String seriesname){
-        ArrayList<Series> s = SerializedSeriesRepository.getInstance().getAllSerieWithTitle(seriesname);
-        if (s.isEmpty()) return Response.status(404).build();
-        for (int i = 0; i < s.size(); i++) {
-            if (!s.get(i).isSeenBy(username)) {
-                s.remove(i);
-                i--;
+    @GET
+    @Path("/{Username}/{seriesname}/rating")
+    public Response getRating(@PathParam("seriesname") String seriesname) {
+        SerializedSeriesRepository repo = SerializedSeriesRepository.getInstance();
+        ArrayList<Rating> ratings = new ArrayList<>();
+        ArrayList<User> allUsers = repo.getAllUsers();
+        for (User user : allUsers) {
+            Series testSeries = repo.getSeriesObjectFromName(seriesname);
+            Rating rating = user.ratingOf(testSeries);
+            if (rating != null) {
+                ratings.add(rating);
             }
         }
-        return Response.ok().entity(s).build();
-    }
-
-    /**
-     *
-     * @param username
-     * @param r
-     * @return
-     */
-    @POST
-    @Path("{Username}/rating")
-    @Consumes(MediaType.APPLICATION_XML)
-    public Response rate_XML(@PathParam("Username") String username, Rating r) {
-        if (username.equals(r.getRatingUser())) {
-            User u = SerializedSeriesRepository.getInstance().getUserObject(username);
-            u.rate(r.getRatedSeries(), r.getScore(), r.getRemark());
-            return Response.ok().entity("rate wurde erstellt").build();
-        } else {
-            return Response.status(400).entity("Das war dumm " + username + " ## r.User: " + r.getRatingUser() + " ## Serie: " + r.getRatedSeries()).build(); // User und rating user sind nicht identisch hier muss noch ein fehler code rausgesucht werden.
-        }
-
-    }
-
-    /**
-     * register a new User
-     * @param user username and password
-     * @return a response with statuscode
-     */
-    @POST
-    @Path("registerUser")
-    @Consumes(MediaType.APPLICATION_XML)
-    public Response registerUser_XML(User user) {
-        SerializedSeriesRepository repo = SerializedSeriesRepository.getInstance();
-        if (repo.getUserObject(user.getUsername()) == null) {
-            repo.registerUser(user);
-            return Response.status(201).build();
-        } else {
-            return Response.status(409).build(); //409 conflict username already exists
-        }
+        return Response.ok().status(200).entity(ratings).build();
     }
 }

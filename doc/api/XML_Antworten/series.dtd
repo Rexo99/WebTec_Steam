@@ -1,0 +1,8 @@
+<!ELEMENT series (genre,numberOfSeasons,seenBy,streamedBy,title)
+        <!ELEMENT genre (#PCDATA)>
+        <!ELEMENT numberOfSeasons (#PCDATA)>
+        <!ELEMENT seenBy (user+)>
+        <!ELEMENT user (#PCDATA)>
+        <!ELEMENT streamedBy (user+)>
+        <!ELEMENT user (#PCDATA)>
+        <!ELEMENT title (#PCDATA)>

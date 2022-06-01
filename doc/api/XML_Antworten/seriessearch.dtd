@@ -1,0 +1,7 @@
+<!ELEMENT seriessearch (Series)>
+<!ELEMENT Series (series+)>
+        <!ELEMENT series (genre, numberOfSeasons, streamedBy, titel)>
+        <!ELEMENT genre (#PCDATA)>
+        <!ELEMENT numberOfSeasons (#PCDATA)>
+        <!ELEMENT streamedBy (#PCDATA)>
+        <!ELEMENT titel (#PCDATA)>

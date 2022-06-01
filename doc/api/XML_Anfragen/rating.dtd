@@ -1,0 +1,5 @@
+<!ELEMENT rating (ratedSeries, ratingUser, score, remark)>
+        <!ELEMENT ratedSeries (#PCDATA)>
+        <!ELEMENT ratingUser (#PCDATA)>
+        <!ELEMENT score (#PCDATA)>
+        <!ELEMENT remark (#PCDATA)>

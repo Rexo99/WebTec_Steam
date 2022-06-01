@@ -1,0 +1,62 @@
+3.4. Entwurf einer REST-Schnittstelle
+ Ressourcen:
+ - Serien
+    - Rating
+        - score
+        - remark
+        - ratingSeries
+        - ratedSeries
+    - Platform
+    - Genre
+    - Anzahl Staffeln
+    - Titel
+    - Bemerkung
+
+ - User
+    - Username
+    - Password
+
+
+URI-Template
+
+Anwendung zum streamen von Serien
+
+HTTP: GET
+REST: READ
+URI: /api/serien/{Username}
+Beschreibung: Gibt alle Serien des Users zurück
+
+HTTP: GET
+REST: READ
+URI: /api/serien/{Username}/{SeriesName}
+Beschreibung: Gibt die ausgewählte Serie zurück
+
+HTTP: GET
+REST: READ
+URI: /api/serien/{Username}/searchByName/{Seriename}
+Beschreibung: Durchsucht alle Serien nach dem Namen
+
+HTTP: POST
+REST: READ
+URI: /api/serien/LogIn
+Beschreibung: Gibt alle Serien des Users zurück, wenn die Anmeldung erfolgreich war.
+
+HTTP: POST
+REST: CREATE
+URI: /api/serien/{Username}/create_Series
+Beschreibung: Fügt eine neue Serie dem Benutzer hinzu.
+
+HTTP: POST
+REST: CREATE
+URI: /api/serien/{Username}/search/
+Beschreibung: Serien können nach Attributen außer dem Titel gesucht werden.
+
+HTTP: POST
+REST: CREATE
+URI: /api/serien/{Username}/rating
+Beschreibung: Rating mit Bemerkung für ausgewählte Serie erstellen
+
+HTTP: POST
+REST: CREATE
+URI: /api/serien/registerUser/
+Beschreibung: Fügt User hinzu, falls er noch nicht existiert.
