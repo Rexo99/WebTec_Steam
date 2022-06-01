@@ -1,0 +1,3 @@
+#!/bin/bash
+
+glassfish6/bin/asadmin start-domain
