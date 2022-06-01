@@ -20,24 +20,26 @@ import de.hsh.steam.entities.User;
 public class SerializedSeriesRepository extends SeriesRepository {
 
 	public SerializedSeriesRepository(){
-		User u = new User("marvin", "123");
-		User l = new User("Luca", "1234");
+		// Zum testen werden hier Benutzer und Serien hinzugefügt.
+		/*
+		User marvin = new User("Marvin", "123");
+		User luca = new User("Luca", "1234");
 
 		Series s1 = new Series("Dinotopia", 2, Genre.Action, Streamingprovider.AmazonPrime);
 		Series s2 = new Series("Dinotopia reloaded",2,Genre.Documentary, Streamingprovider.Netflix);
 
-		registerUser(u);
-		registerUser(l);
+		registerUser(marvin);
+		registerUser(luca);
 
 		addOrModifySeries(s1);
 		addOrModifySeries(s2);
 
-		s1.putOnWatchListOfUser(u.getUsername());
-		s2.putOnWatchListOfUser(u.getUsername());
+		s1.putOnWatchListOfUser(marvin.getUsername());
+		s2.putOnWatchListOfUser(marvin.getUsername());
 
-		s1.putOnWatchListOfUser(l.getUsername());
-		s2.putOnWatchListOfUser(l.getUsername());
-
+		s1.putOnWatchListOfUser(luca.getUsername());
+		s2.putOnWatchListOfUser(luca.getUsername());
+		*/
 	}
 
 	private static SerializedSeriesRepository exemplar = null;

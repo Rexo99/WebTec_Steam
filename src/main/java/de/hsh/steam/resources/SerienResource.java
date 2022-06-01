@@ -118,13 +118,14 @@ public class SerienResource {
      */
     @POST
     @Path("/{Username}/modify_Series")
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response modifySerie(@PathParam("Username") String username, Series s) {
         try {
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
             a.putOnWatchListOfUser(username);
             return Response.ok().status(200).entity(s.getTitle() + " wurde bearbeitet.").build();
         } catch (Exception e) {
-            return Response.status(409).build(); // hier muss noch ein andere Fehlercode rein
+            return Response.status(409).build();
         }
     }
 
