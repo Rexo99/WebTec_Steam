@@ -119,6 +119,7 @@ public class SerienResource {
      */
     @POST
     @Path("/{Username}/modify_Series")
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response modifySerie(@PathParam("Username") String username, Series s) {
         try {
             Series a = SerializedSeriesRepository.getInstance().addOrModifySeries(s);
