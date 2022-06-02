@@ -1,149 +1,59 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000e9; -webkit-text-stroke: #0000e9}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 11.0px 'Helvetica Neue'; color: #000000; color: rgba(0, 0, 0, 0.85); -webkit-text-stroke: rgba(0, 0, 0, 0.85)}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    p.p5 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times; color: #000000; -webkit-text-stroke: #000000}
+    li.li1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000e9; -webkit-text-stroke: #0000e9}
+    span.s1 {text-decoration: underline ; font-kerning: none}
+    span.s2 {-webkit-text-stroke: 0px #000000}
+    span.s3 {font-kerning: none; color: #000000; -webkit-text-stroke: 0px #000000}
+    span.s4 {font-kerning: none; background-color: #b3b3b3}
+    span.s5 {font: 12.0px Times; font-kerning: none; color: #000000; -webkit-text-stroke: 0px #000000}
+    span.s6 {font-kerning: none}
+    ul.ul1 {list-style-type: disc}
+  </style>
 </head>
-
-
 <body>
-
-<!-- #### Navigartions Bar #### -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Home</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./AdvancedSearch.html">erweiterte Suche</a>
-                </li>
-            </ul>
-            <form class="d-flex" method="get" action="../index.html">
-                <button class="btn btn-outline-success" type="submit">log out</button>
-            </form>
-        </div>
-    </div>
-</nav>
-
-
-<!-- search -->
-<div class="card text-center">
-    <div class="card-body container col-5">
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-</div>
-
-<!-- pictures -->
-<div class="card text-center container col-8">
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="../pictures/fisherman-gb7c5d7802_1920.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="../pictures/river-g85495297e_1920.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="../pictures/sunset-g53d547369_1920.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</div>
-
-<!-- all Series -->
-<div class="container col-8 py-5">
-
-    <!-- Movie 1 -->
-    <div class="py-2">
-        <div class="card">
-            <h5 class="card-header">Dinotopia</h5>
-            <div class="card-body">
-                <h5 class="card-title">Action</h5>
-                <p class="card-text">An unbelievably good film that will amaze the whole family.</p>
-                <a href="#" class="btn btn-primary">show</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Movie 2 -->
-    <div class="py-2">
-        <div class="card">
-            <h5 class="card-header">Dinotopia reload</h5>
-            <div class="card-body">
-                <h5 class="card-title">Action</h5>
-                <p class="card-text">An unbelievably good film that will amaze the whole family.</p>
-                <a href="#" class="btn btn-primary">show</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Movie 3 -->
-    <div class="py-2">
-        <div class="card">
-            <h5 class="card-header">Ein Film</h5>
-            <div class="card-body">
-                <h5 class="card-title">Drama</h5>
-                <p class="card-text">You wanna cry.</p>
-                <a href="#" class="btn btn-primary">show</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Movie 4 -->
-    <div class="py-2">
-        <div class="card">
-            <h5 class="card-header">A normal day with the group 22</h5>
-            <div class="card-body">
-                <h5 class="card-title">Drama</h5>
-                <p class="card-text">An up and down with the feelings. I don't know whether to cry or laugh. </p>
-                <a href="#" class="btn btn-primary">show</a>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-
-
-<!-- JS from bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<p class="p1"><span class="s1">Home</span></p>
+<ul class="ul1">
+  <li class="li1"><span class="s2"><a href="file:///Users/marvinpieper/Documents/Hsh/Semester_6/WT/WebTec_Steam/src/main/webapp/html/AdvancedSearch.html"><span class="s1">erweiterte Suche</span></a></span><span class="s3"><span class="Apple-converted-space"> </span></span></li>
+</ul>
+<p class="p2"><span class="s4">log out</span><span class="s5"><span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s4">Search</span><span class="s5"><span class="Apple-converted-space"> </span></span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<p class="p3"><span class="s6"></span><br></p>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>First slide label</b></span></h5>
+<p class="p5"><span class="s6">Some representative placeholder content for the first slide.</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Second slide label</b></span></h5>
+<p class="p5"><span class="s6">Some representative placeholder content for the second slide.</span></p>
+<p class="p3"><span class="s6"></span><br></p>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Third slide label</b></span></h5>
+<p class="p5"><span class="s6">Some representative placeholder content for the third slide.</span></p>
+<p class="p2"><span class="s4">Previous Next<span class="Apple-converted-space"> </span></span></p>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Dinotopia</b></span></h5>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Action</b></span></h5>
+<p class="p5"><span class="s6">An unbelievably good film that will amaze the whole family.</span></p>
+<p class="p1"><span class="s1">show</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Dinotopia reload</b></span></h5>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Action</b></span></h5>
+<p class="p5"><span class="s6">An unbelievably good film that will amaze the whole family.</span></p>
+<p class="p1"><span class="s1">show</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Ein Film</b></span></h5>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Drama</b></span></h5>
+<p class="p5"><span class="s6">You wanna cry.</span></p>
+<p class="p1"><span class="s1">show</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>A normal day with the group 22</b></span></h5>
+<h5 style="margin: 0.0px 0.0px 16.6px 0.0px; font: 10.0px Times; color: #000000; -webkit-text-stroke: #000000"><span class="s6"><b>Drama</b></span></h5>
+<p class="p5"><span class="s6">An up and down with the feelings. I don't know whether to cry or laugh.<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1">show</span><span class="s3"><span class="Apple-converted-space"> </span></span></p>
 </body>
 </html>

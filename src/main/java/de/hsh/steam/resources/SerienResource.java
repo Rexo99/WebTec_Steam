@@ -32,7 +32,6 @@ import de.hsh.steam.repositories.SerializedSeriesRepository;
 import de.hsh.steam.services.SteamService;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
